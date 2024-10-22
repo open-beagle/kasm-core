@@ -35,41 +35,41 @@ steps:
       proxy:
         from_secret: SOCKS5_PROXY
 
-  - name: docker-amd64
-    image: registry-vpc.cn-qingdao.aliyuncs.com/wod/devops-docker:1.0
-    volumes:
-      - name: docker
-        path: /var/run/docker.sock
-    settings:
-      dockerfile: .beagle/core-debian-bookworm.dockerfile
-      base: registry-vpc.cn-qingdao.aliyuncs.com/wod/debian:bookworm-slim-amd64
-      repo: wod/kasmweb
-      version: core-debian-bookworm-v1.16.0
-      channel: amd64
-      args: "TARGETOS=linux,TARGETARCH=amd64,BG_IMG=bg_debian.svg,DISTRO=debian,LANG=zh_CN.UTF-8,LANGUAGE=zh_CN:zh,LC_ALL=zh_CN.UTF-8,TZ=Asia/Shanghai"
-      registry: registry-vpc.cn-qingdao.aliyuncs.com
-      registry_user:
-        from_secret: REGISTRY_USER_ALIYUN
-      registry_password:
-        from_secret: REGISTRY_PASSWORD_ALIYUN
+  # - name: docker-amd64
+  #   image: registry-vpc.cn-qingdao.aliyuncs.com/wod/devops-docker:1.0
+  #   volumes:
+  #     - name: docker
+  #       path: /var/run/docker.sock
+  #   settings:
+  #     dockerfile: .beagle/core-debian-bookworm.dockerfile
+  #     base: registry-vpc.cn-qingdao.aliyuncs.com/wod/debian:bookworm-slim-amd64
+  #     repo: wod/kasmweb
+  #     version: core-debian-bookworm-v1.16.0
+  #     channel: amd64
+  #     args: "TARGETOS=linux,TARGETARCH=amd64,BG_IMG=bg_debian.svg,DISTRO=debian,LANG=zh_CN.UTF-8,LANGUAGE=zh_CN:zh,LC_ALL=zh_CN.UTF-8,TZ=Asia/Shanghai"
+  #     registry: registry-vpc.cn-qingdao.aliyuncs.com
+  #     registry_user:
+  #       from_secret: REGISTRY_USER_ALIYUN
+  #     registry_password:
+  #       from_secret: REGISTRY_PASSWORD_ALIYUN
 
-  - name: docker-arm64
-    image: registry-vpc.cn-qingdao.aliyuncs.com/wod/devops-docker:1.0
-    volumes:
-      - name: docker
-        path: /var/run/docker.sock
-    settings:
-      dockerfile: .beagle/core-debian-bookworm.dockerfile
-      base: registry-vpc.cn-qingdao.aliyuncs.com/wod/debian:bookworm-slim-arm64
-      repo: wod/kasmweb
-      version: core-debian-bookworm-v1.16.0
-      channel: arm64
-      args: "TARGETOS=linux,TARGETARCH=arm64,BG_IMG=bg_debian.svg,DISTRO=debian,LANG=zh_CN.UTF-8,LANGUAGE=zh_CN:zh,LC_ALL=zh_CN.UTF-8,TZ=Asia/Shanghai"
-      registry: registry-vpc.cn-qingdao.aliyuncs.com
-      registry_user:
-        from_secret: REGISTRY_USER_ALIYUN
-      registry_password:
-        from_secret: REGISTRY_PASSWORD_ALIYUN
+  # - name: docker-arm64
+  #   image: registry-vpc.cn-qingdao.aliyuncs.com/wod/devops-docker:1.0
+  #   volumes:
+  #     - name: docker
+  #       path: /var/run/docker.sock
+  #   settings:
+  #     dockerfile: .beagle/core-debian-bookworm.dockerfile
+  #     base: registry-vpc.cn-qingdao.aliyuncs.com/wod/debian:bookworm-slim-arm64
+  #     repo: wod/kasmweb
+  #     version: core-debian-bookworm-v1.16.0
+  #     channel: arm64
+  #     args: "TARGETOS=linux,TARGETARCH=arm64,BG_IMG=bg_debian.svg,DISTRO=debian,LANG=zh_CN.UTF-8,LANGUAGE=zh_CN:zh,LC_ALL=zh_CN.UTF-8,TZ=Asia/Shanghai"
+  #     registry: registry-vpc.cn-qingdao.aliyuncs.com
+  #     registry_user:
+  #       from_secret: REGISTRY_USER_ALIYUN
+  #     registry_password:
+  #       from_secret: REGISTRY_PASSWORD_ALIYUN
 
   - name: docker-arch
     image: registry-vpc.cn-qingdao.aliyuncs.com/wod/devops-docker-manifest:1.0
