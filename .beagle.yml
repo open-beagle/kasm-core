@@ -41,7 +41,7 @@ steps:
       - name: docker
         path: /var/run/docker.sock
     settings:
-      dockerfile: .beagle/kasm-core-debian-bookworm.dockerfile
+      dockerfile: .beagle/core-debian-bookworm.dockerfile
       base: registry-vpc.cn-qingdao.aliyuncs.com/wod/debian:bookworm-slim-amd64
       repo: wod/kasmweb
       version: core-debian-bookworm-v1.16.0
@@ -59,7 +59,7 @@ steps:
       - name: docker
         path: /var/run/docker.sock
     settings:
-      dockerfile: .beagle/kasm-core-debian-bookworm.dockerfile
+      dockerfile: .beagle/core-debian-bookworm.dockerfile
       base: registry-vpc.cn-qingdao.aliyuncs.com/wod/debian:bookworm-slim-arm64
       repo: wod/kasmweb
       version: core-debian-bookworm-v1.16.0
