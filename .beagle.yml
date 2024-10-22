@@ -46,7 +46,7 @@ steps:
       repo: wod/kasmweb
       version: core-debian-bookworm-v1.16.0
       channel: amd64
-      args: "TARGETOS=linux,TARGETARCH=amd64"
+      args: "TARGETOS=linux,TARGETARCH=amd64,BG_IMG=bg_debian.svg,DISTRO=debian,LANG=zh_CN.UTF-8,LANGUAGE=zh_CN:zh,LC_ALL=zh_CN.UTF-8,TZ=Asia/Shanghai"
       registry: registry-vpc.cn-qingdao.aliyuncs.com
       registry_user:
         from_secret: REGISTRY_USER_ALIYUN
@@ -64,7 +64,7 @@ steps:
       repo: wod/kasmweb
       version: core-debian-bookworm-v1.16.0
       channel: arm64
-      args: "TARGETOS=linux,TARGETARCH=arm64"
+      args: "TARGETOS=linux,TARGETARCH=arm64,BG_IMG=bg_debian.svg,DISTRO=debian,LANG=zh_CN.UTF-8,LANGUAGE=zh_CN:zh,LC_ALL=zh_CN.UTF-8,TZ=Asia/Shanghai"
       registry: registry-vpc.cn-qingdao.aliyuncs.com
       registry_user:
         from_secret: REGISTRY_USER_ALIYUN
