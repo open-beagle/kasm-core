@@ -15,7 +15,7 @@ mkdir -p /usr/share/icons/hicolor/scalable/emblems
 for icon in $icons; do
   URL=$(echo "${icon}" | awk -F'|' '{print $1}')
   NAME=$(echo "${icon}" | awk -F'|' '{print $2}')
-  curl -o /usr/share/icons/hicolor/scalable/emblems/${NAME}-emblem.svg -L "${URL}"
+  curl -o /usr/share/icons/hicolor/scalable/emblems/${NAME}-emblem.svg -x socks5://www.ali.wodcloud.com:1283 -sfL "${URL}"
   echo "[Icon Data]" >> /usr/share/icons/hicolor/scalable/emblems/${NAME}-emblem.icon
   echo "DisplayName=${NAME}-emblem" >> /usr/share/icons/hicolor/scalable/emblems/${NAME}-emblem.icon
 done
