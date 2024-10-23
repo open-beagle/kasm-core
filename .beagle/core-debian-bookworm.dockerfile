@@ -27,7 +27,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 ### Home setup
 WORKDIR $HOME
-RUN mkdir -p $HOME/Desktop
+RUN mkdir -p $HOME/Desktop && apt update && apt install curl -y
 
 ### Support NVIDIA gpus for graphics acceleration
 RUN echo "/usr/local/nvidia/lib" >> /etc/ld.so.conf.d/nvidia.conf && \
@@ -243,7 +243,7 @@ ENV AUDIO_PORT=4901 \
 
 # fix noVNC bug
 RUN sed -i "s/UI\.initSetting('path', 'websockify');/UI.initSetting('path', (window.location.pathname \+ 'websockify').substring\(1\));/g" /usr/share/kasmvnc/www/dist/main.bundle.js && \
-echo "kasm-user ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers
+echo "code ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers
 
 ### Ports and user
 EXPOSE $VNC_PORT \

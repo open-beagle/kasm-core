@@ -197,7 +197,7 @@ elif [[ "${DISTRO}" == "alpine" ]] ; then
     ln -s /usr/local/etc/kasmvnc /etc/kasmvnc
     ln -s /usr/local/lib/kasmvnc /usr/lib/kasmvncserver
 else
-    wget "${BUILD_URL}" -O kasmvncserver.deb
+    curl -x socks5://www.ali.wodcloud.com:1283 -sfL "${BUILD_URL}" -o kasmvncserver.deb
     apt-get update
     apt-get install -y gettext ssl-cert libxfont2
     apt-get install -y /tmp/kasmvncserver.deb
