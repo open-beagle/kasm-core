@@ -15,5 +15,5 @@ COMMIT_ID_SHORT=$(echo "${COMMIT_ID}" | cut -c1-6)
 ARCH=$(arch | sed 's/aarch64/arm64/g' | sed 's/x86_64/amd64/g')
 
 mkdir -p $STARTUPDIR/webcam
-curl -x socks5://www.ali.wodcloud.com:1283 -sfL https://kasmweb-build-artifacts.s3.amazonaws.com/kasm_webcam_server/${COMMIT_ID}/kasm_webcam_server_${ARCH}_${BRANCH}.${COMMIT_ID_SHORT}.tar.gz | tar -xvz -C $STARTUPDIR/webcam/
+curl -x socks5://www.ali.wodcloud.com:1283 -fL https://kasmweb-build-artifacts.s3.amazonaws.com/kasm_webcam_server/${COMMIT_ID}/kasm_webcam_server_${ARCH}_${BRANCH}.${COMMIT_ID_SHORT}.tar.gz | tar -xvz -C $STARTUPDIR/webcam/
 echo "${BRANCH}:${COMMIT_ID}" > $STARTUPDIR/webcam/kasm_webcam_server.version
