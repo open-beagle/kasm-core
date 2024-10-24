@@ -15,15 +15,15 @@ ARG LANGUAGE='en_US:en'
 ARG LC_ALL='en_US.UTF-8'
 ARG TZ='Etc/UTC'
 ENV DEBIAN_FRONTEND=noninteractive \
-    DISTRO=$DISTRO \
-    HOME=/home/kasm-default-profile \
-    INST_SCRIPTS=/dockerstartup/install \
-    KASM_VNC_PATH=/usr/share/kasmvnc \
-    LANG=$LANG \
-    LANGUAGE=$LANGUAGE \
-    LC_ALL=$LC_ALL \
-    TZ=$TZ \
-    STARTUPDIR=/dockerstartup
+  DISTRO=$DISTRO \
+  HOME=/home/kasm-default-profile \
+  INST_SCRIPTS=/dockerstartup/install \
+  KASM_VNC_PATH=/usr/share/kasmvnc \
+  LANG=$LANG \
+  LANGUAGE=$LANGUAGE \
+  LC_ALL=$LC_ALL \
+  TZ=$TZ \
+  STARTUPDIR=/dockerstartup
 
 ### Home setup
 WORKDIR $HOME
@@ -31,7 +31,7 @@ RUN mkdir -p $HOME/Desktop && apt update && apt install curl -y
 
 ### Support NVIDIA gpus for graphics acceleration
 RUN echo "/usr/local/nvidia/lib" >> /etc/ld.so.conf.d/nvidia.conf && \
-    echo "/usr/local/nvidia/lib64" >> /etc/ld.so.conf.d/nvidia.conf
+  echo "/usr/local/nvidia/lib64" >> /etc/ld.so.conf.d/nvidia.conf
 COPY src/ubuntu/install/nvidia/10_nvidia.json /usr/share/glvnd/egl_vendor.d/10_nvidia.json
 
 ### Setup package rules
@@ -124,7 +124,7 @@ RUN chmod +x /etc/squid/start_squid.sh && chmod 4755 /etc/squid/start_squid.sh
 COPY ./src/common/scripts/kasm_hook_scripts $STARTUPDIR
 ADD ./src/common/startup_scripts $STARTUPDIR
 RUN bash $STARTUPDIR/set_user_permission.sh $STARTUPDIR $HOME && \
-    echo 'source $STARTUPDIR/generate_container_user' >> $HOME/.bashrc
+  echo 'source $STARTUPDIR/generate_container_user' >> $HOME/.bashrc
 
 ### extra configurations needed per distro variant
 COPY ./src/ubuntu/install/extra $INST_SCRIPTS/extra/
@@ -143,46 +143,46 @@ COPY ./src/ubuntu/install/emblems $INST_SCRIPTS/emblems/
 RUN bash $INST_SCRIPTS/emblems/install_emblems.sh && rm -rf $INST_SCRIPTS/emblems/
 
 ### Create user and home directory for base images that don't already define it
-RUN (groupadd -g 1000 code \
-    && useradd -M -u 1000 -g 1000 code \
-    && usermod -a -G code code) ; exit 0
+RUN groupadd -g 1000 code \
+  && useradd -M -u 1000 -g 1000 code \
+  && usermod -a -G code code
 ENV HOME=/home/code
 WORKDIR $HOME
 RUN mkdir -p $HOME && chown -R 1000:0 $HOME
 
 ### Create user exclusively for session recording purposes
-RUN (groupadd -g 1001 kasm-recorder \
-    && useradd -M -u 1001 -g 1001 kasm-recorder \
-    && usermod -a -G kasm-recorder) ; exit 0
+RUN groupadd -g 1001 kasm-recorder \
+  && useradd -M -u 1001 -g 1001 kasm-recorder \
+  && usermod -a -G kasm-recorder
 
 ### FIX PERMISSIONS ## Objective is to change the owner of non-home paths to root, remove write permissions, and set execute where required
 # these files are created on container first exec, by the default user, so we have to create them since default will not have write perm
 RUN touch $STARTUPDIR/wm.log \
-    && touch $STARTUPDIR/window_manager_startup.log \
-    && touch $STARTUPDIR/vnc_startup.log \
-    && touch $STARTUPDIR/no_vnc_startup.log \
-    && chown -R root:root $STARTUPDIR \
-    && find $STARTUPDIR -type d -exec chmod 755 {} \; \
-    && find $STARTUPDIR -type f -exec chmod 644 {} \; \
-    && find $STARTUPDIR -type f -iname "*.sh" -exec chmod 755 {} \; \
-    && find $STARTUPDIR -type f -iname "*.py" -exec chmod 755 {} \; \
-    && find $STARTUPDIR -type f -iname "*.rb" -exec chmod 755 {} \; \
-    && find $STARTUPDIR -type f -iname "*.pl" -exec chmod 755 {} \; \
-    && find $STARTUPDIR -type f -iname "*.log" -exec chmod 666 {} \; \
-    && chmod 755 $STARTUPDIR/upload_server/kasm_upload_server \
-    && chmod 755 $STARTUPDIR/audio_input/kasm_audio_input_server \
-    && chmod 755 $STARTUPDIR/gamepad/kasm_gamepad_server \
-    && chmod 755 $STARTUPDIR/webcam/kasm_webcam_server \
-    && chmod 755 $STARTUPDIR/printer/kasm_printer_service \
-    && chmod 755 $STARTUPDIR/recorder/kasm_recorder_service \
-    && chmod 755 $STARTUPDIR/generate_container_user \
-    && chmod +x $STARTUPDIR/jsmpeg/kasm_audio_out-linux \
-    && rm -rf $STARTUPDIR/install \
-    && mkdir -p $STARTUPDIR/kasmrx/Downloads \
-    && chown 1000:1000 $STARTUPDIR/kasmrx/Downloads \
-    && chown -R root:root /usr/local/bin \
-    && chown 1000:root /var/run/pulse \
-    && rm -Rf /home/kasm-default-profile/.launchpadlib
+  && touch $STARTUPDIR/window_manager_startup.log \
+  && touch $STARTUPDIR/vnc_startup.log \
+  && touch $STARTUPDIR/no_vnc_startup.log \
+  && chown -R root:root $STARTUPDIR \
+  && find $STARTUPDIR -type d -exec chmod 755 {} \; \
+  && find $STARTUPDIR -type f -exec chmod 644 {} \; \
+  && find $STARTUPDIR -type f -iname "*.sh" -exec chmod 755 {} \; \
+  && find $STARTUPDIR -type f -iname "*.py" -exec chmod 755 {} \; \
+  && find $STARTUPDIR -type f -iname "*.rb" -exec chmod 755 {} \; \
+  && find $STARTUPDIR -type f -iname "*.pl" -exec chmod 755 {} \; \
+  && find $STARTUPDIR -type f -iname "*.log" -exec chmod 666 {} \; \
+  && chmod 755 $STARTUPDIR/upload_server/kasm_upload_server \
+  && chmod 755 $STARTUPDIR/audio_input/kasm_audio_input_server \
+  && chmod 755 $STARTUPDIR/gamepad/kasm_gamepad_server \
+  && chmod 755 $STARTUPDIR/webcam/kasm_webcam_server \
+  && chmod 755 $STARTUPDIR/printer/kasm_printer_service \
+  && chmod 755 $STARTUPDIR/recorder/kasm_recorder_service \
+  && chmod 755 $STARTUPDIR/generate_container_user \
+  && chmod +x $STARTUPDIR/jsmpeg/kasm_audio_out-linux \
+  && rm -rf $STARTUPDIR/install \
+  && mkdir -p $STARTUPDIR/kasmrx/Downloads \
+  && chown 1000:1000 $STARTUPDIR/kasmrx/Downloads \
+  && chown -R root:root /usr/local/bin \
+  && chown 1000:root /var/run/pulse \
+  && rm -Rf /home/kasm-default-profile/.launchpadlib
 
 ### Cleanup job
 COPY ./src/ubuntu/install/cleanup $INST_SCRIPTS/cleanup/
@@ -207,49 +207,49 @@ ARG START_PULSEAUDIO=1
 ARG START_XFCE4=1
 ARG TZ='Etc/UTC'
 ENV AUDIO_PORT=4901 \
-    DEBIAN_FRONTEND=noninteractive \
-    DISPLAY=:1 \
-    DISTRO=$DISTRO \
-    GOMP_SPINCOUNT=0 \
-    HOME=/home/code \
-    INST_SCRIPTS=/dockerstartup/install \
-    KASMVNC_AUTO_RECOVER=true \
-    KASM_VNC_PATH=/usr/share/kasmvnc \
-    LANG=$LANG \
-    LANGUAGE=$LANGUAGE \
-    LC_ALL=$LC_ALL \
-    LD_LIBRARY_PATH=/opt/libjpeg-turbo/lib64/:/usr/local/lib/ \
-    LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:/usr/lib/i386-linux-gnu${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}:/usr/local/nvidia/lib:/usr/local/nvidia/lib64 \
-    MAX_FRAME_RATE=24 \
-    NO_VNC_PORT=6901 \
-    NVIDIA_DRIVER_CAPABILITIES=${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics,compat32,utility \
-    OMP_WAIT_POLICY=PASSIVE \
-    PULSE_RUNTIME_PATH=/var/run/pulse \
-    SDL_GAMECONTROLLERCONFIG="030000005e040000be02000014010000,XInput Controller,platform:Linux,a:b0,b:b1,x:b2,y:b3,back:b8,guide:b16,start:b9,leftstick:b10,rightstick:b11,leftshoulder:b4,rightshoulder:b5,dpup:b12,dpdown:b13,dpleft:b14,dpright:b15,leftx:a0,lefty:a1,rightx:a2,righty:a3,lefttrigger:b6,righttrigger:b7" \
-    SHELL=/bin/bash \
-    START_PULSEAUDIO=$START_PULSEAUDIO \
-    STARTUPDIR=/dockerstartup \
-    START_XFCE4=$START_XFCE4 \
-    TERM=xterm \
-    VNC_COL_DEPTH=24 \
-    VNCOPTIONS="-PreferBandwidth -DynamicQualityMin=4 -DynamicQualityMax=7 -DLP_ClipDelay=0" \
-    VNC_PORT=5901 \
-    VNC_PORT=5901 \
-    VNC_PW=vncpassword \
-    VNC_RESOLUTION=1280x1024 \
-    VNC_RESOLUTION=1280x720 \
-    VNC_VIEW_ONLY_PW=vncviewonlypassword \
-    TZ=$TZ
+  DEBIAN_FRONTEND=noninteractive \
+  DISPLAY=:1 \
+  DISTRO=$DISTRO \
+  GOMP_SPINCOUNT=0 \
+  HOME=/home/code \
+  INST_SCRIPTS=/dockerstartup/install \
+  KASMVNC_AUTO_RECOVER=true \
+  KASM_VNC_PATH=/usr/share/kasmvnc \
+  LANG=$LANG \
+  LANGUAGE=$LANGUAGE \
+  LC_ALL=$LC_ALL \
+  LD_LIBRARY_PATH=/opt/libjpeg-turbo/lib64/:/usr/local/lib/ \
+  LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:/usr/lib/i386-linux-gnu${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}:/usr/local/nvidia/lib:/usr/local/nvidia/lib64 \
+  MAX_FRAME_RATE=24 \
+  NO_VNC_PORT=6901 \
+  NVIDIA_DRIVER_CAPABILITIES=${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics,compat32,utility \
+  OMP_WAIT_POLICY=PASSIVE \
+  PULSE_RUNTIME_PATH=/var/run/pulse \
+  SDL_GAMECONTROLLERCONFIG="030000005e040000be02000014010000,XInput Controller,platform:Linux,a:b0,b:b1,x:b2,y:b3,back:b8,guide:b16,start:b9,leftstick:b10,rightstick:b11,leftshoulder:b4,rightshoulder:b5,dpup:b12,dpdown:b13,dpleft:b14,dpright:b15,leftx:a0,lefty:a1,rightx:a2,righty:a3,lefttrigger:b6,righttrigger:b7" \
+  SHELL=/bin/bash \
+  START_PULSEAUDIO=$START_PULSEAUDIO \
+  STARTUPDIR=/dockerstartup \
+  START_XFCE4=$START_XFCE4 \
+  TERM=xterm \
+  VNC_COL_DEPTH=24 \
+  VNCOPTIONS="-PreferBandwidth -DynamicQualityMin=4 -DynamicQualityMax=7 -DLP_ClipDelay=0" \
+  VNC_PORT=5901 \
+  VNC_PORT=5901 \
+  VNC_PW=vncpassword \
+  VNC_RESOLUTION=1280x1024 \
+  VNC_RESOLUTION=1280x720 \
+  VNC_VIEW_ONLY_PW=vncviewonlypassword \
+  TZ=$TZ
 
 # fix noVNC bug
 RUN sed -i "s/UI\.initSetting('path', 'websockify');/UI.initSetting('path', (window.location.pathname \+ 'websockify').substring\(1\));/g" /usr/share/kasmvnc/www/dist/main.bundle.js && \
-echo "code ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers
+  echo "code ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers
 
 ### Ports and user
 EXPOSE $VNC_PORT \
-       $NO_VNC_PORT \
-       $UPLOAD_PORT \
-       $AUDIO_PORT
+  $NO_VNC_PORT \
+  $UPLOAD_PORT \
+  $AUDIO_PORT
 WORKDIR $HOME
 USER 1000
 

@@ -52,6 +52,12 @@ docker run -it --rm \
   -w /go/src/github.com/open-beagle/kasm-core \
   --entrypoint=/bin/bash \
   registry.cn-qingdao.aliyuncs.com/wod/kasmweb:core-debian-bookworm-v1.16.0-amd64
+
+docker run -it --rm \
+  -v $PWD:/go/src/github.com/open-beagle/kasm-core \
+  -w /go/src/github.com/open-beagle/kasm-core \
+  --entrypoint=/bin/bash \
+  registry.cn-qingdao.aliyuncs.com/wod/debian:bookworm-slim-amd64
 ```
 
 ## cache
