@@ -153,7 +153,7 @@ RUN mkdir -p $HOME && chown -R 1000:0 $HOME
 ### Create user exclusively for session recording purposes
 RUN groupadd -g 1001 kasm-recorder \
   && useradd -M -u 1001 -g 1001 kasm-recorder \
-  && usermod -a -G kasm-recorder
+  && usermod -a -G kasm-recorder kasm-recorder
 
 ### FIX PERMISSIONS ## Objective is to change the owner of non-home paths to root, remove write permissions, and set execute where required
 # these files are created on container first exec, by the default user, so we have to create them since default will not have write perm
