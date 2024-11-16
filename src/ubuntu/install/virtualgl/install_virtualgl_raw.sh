@@ -1,16 +1,15 @@
 BUILD_ARCH=$(uname -p)
-BUILD_VERSION="3.1"
 
-rm -rf $INST_SCRIPTS/virtualgl/*.deb
 if [ "$DISTRO" = "ubuntu" ]; then
+  #install virtualgl
+  #wget https://sourceforge.net/projects/virtualgl/files/2.6.95%20%283.0rc1%29/virtualgl_2.6.95_amd64.deb -P /tmp
 
   if [[ "${BUILD_ARCH}" =~ ^aarch64$ ]]; then
     apt-get update && apt-get install -y --no-install-recommends \
       libxau6 libxdmcp6 libxcb1 libxext6 libx11-6
     apt-get update && apt-get install -y --no-install-recommends \
-      libglvnd0 libgl1 libglx0 libegl1 libgles2 libegl1-mesa
+      libglvnd0 libgl1 libglx0 libegl1 libgles2
 
-    curl -o $INST_SCRIPTS/virtualgl/virtualgl_${BUILD_VERSION}_arm64.deb -fL https://cache.ali.wodcloud.com/vscode/kasm/virtualgl/virtualgl_${BUILD_VERSION}_arm64.deb
     dpkg -i $INST_SCRIPTS/virtualgl/virtualgl_*arm64.deb
   else
     dpkg --add-architecture i386
@@ -25,14 +24,12 @@ if [ "$DISTRO" = "ubuntu" ]; then
       libgl1 libgl1:i386 \
       libglx0 libglx0:i386 \
       libegl1 libegl1:i386 \
-      libgles2 libgles2:i386 \
-      libegl1-mesa libegl1-mesa:i386
+      libgles2 libgles2:i386
 
     if ! grep -q "24.04" /etc/os-release; then
       add-apt-repository ppa:kisak/turtle
       apt full-upgrade -y
     fi
-    curl -o $INST_SCRIPTS/virtualgl/virtualgl_${BUILD_VERSION}_amd64.deb -fL https://cache.ali.wodcloud.com/vscode/kasm/virtualgl/virtualgl_${BUILD_VERSION}_amd64.deb
     dpkg -i $INST_SCRIPTS/virtualgl/virtualgl_*amd64.deb
   fi
 

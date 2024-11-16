@@ -32,100 +32,100 @@ if [ "${DISTRO}" == "kali" ]; then
   apt-get update
   apt-get install -y sgml-base
   if [[ "$(arch)" =~ ^x86_64$ ]]; then
-    BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_kali-rolling_${KASM_VER_NAME_PART}_amd64.deb"
+    BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_kali-rolling_${KASM_VER_NAME_PART}_amd64.deb"
   else
-    BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_kali-rolling_${KASM_VER_NAME_PART}_arm64.deb"
+    BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_kali-rolling_${KASM_VER_NAME_PART}_arm64.deb"
   fi
 elif [[ "${DISTRO}" == @(centos|oracle7) ]]; then
-  BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_centos_core_${KASM_VER_NAME_PART}_x86_64.rpm"
+  BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_centos_core_${KASM_VER_NAME_PART}_x86_64.rpm"
 elif [[ "${DISTRO}" == @(rockylinux8|oracle8|almalinux8) ]]; then
   if [[ "$(arch)" =~ ^x86_64$ ]]; then
-    BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_oracle_8_${KASM_VER_NAME_PART}_x86_64.rpm"
+    BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_oracle_8_${KASM_VER_NAME_PART}_x86_64.rpm"
   else
-    BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_oracle_8_${KASM_VER_NAME_PART}_aarch64.rpm"
+    BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_oracle_8_${KASM_VER_NAME_PART}_aarch64.rpm"
   fi
 elif [[ "${DISTRO}" == @(rockylinux9|oracle9|almalinux9) ]]; then
   if [[ "$(arch)" =~ ^x86_64$ ]]; then
-    BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_oracle_9_${KASM_VER_NAME_PART}_x86_64.rpm"
+    BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_oracle_9_${KASM_VER_NAME_PART}_x86_64.rpm"
   else
-    BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_oracle_9_${KASM_VER_NAME_PART}_aarch64.rpm"
+    BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_oracle_9_${KASM_VER_NAME_PART}_aarch64.rpm"
   fi
 elif [[ "${DISTRO}" == "opensuse" ]]; then
   if [[ "$(arch)" =~ ^x86_64$ ]]; then
-    BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_opensuse_15_${KASM_VER_NAME_PART}_x86_64.rpm"
+    BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_opensuse_15_${KASM_VER_NAME_PART}_x86_64.rpm"
   else
-    BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_opensuse_15_${KASM_VER_NAME_PART}_aarch64.rpm"
+    BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_opensuse_15_${KASM_VER_NAME_PART}_aarch64.rpm"
   fi
 elif [[ "${DISTRO}" == "fedora37" ]]; then
   if [[ "$(arch)" =~ ^x86_64$ ]]; then
-    BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_fedora_thirtyseven_${KASM_VER_NAME_PART}_x86_64.rpm"
+    BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_fedora_thirtyseven_${KASM_VER_NAME_PART}_x86_64.rpm"
   else
-    BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_fedora_thirtyseven_${KASM_VER_NAME_PART}_aarch64.rpm"
+    BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_fedora_thirtyseven_${KASM_VER_NAME_PART}_aarch64.rpm"
   fi
 elif [[ "${DISTRO}" == "fedora38" ]]; then
   if [[ "$(arch)" =~ ^x86_64$ ]]; then
-    BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_fedora_thirtyeight_${KASM_VER_NAME_PART}_x86_64.rpm"
+    BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_fedora_thirtyeight_${KASM_VER_NAME_PART}_x86_64.rpm"
   else
-    BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_fedora_thirtyeight_${KASM_VER_NAME_PART}_aarch64.rpm"
+    BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_fedora_thirtyeight_${KASM_VER_NAME_PART}_aarch64.rpm"
   fi
 elif [[ "${DISTRO}" == "fedora39" ]]; then
   if [[ "$(arch)" =~ ^x86_64$ ]]; then
-    BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_fedora_thirtynine_${KASM_VER_NAME_PART}_x86_64.rpm"
+    BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_fedora_thirtynine_${KASM_VER_NAME_PART}_x86_64.rpm"
   else
-    BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_fedora_thirtynine_${KASM_VER_NAME_PART}_aarch64.rpm"
+    BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_fedora_thirtynine_${KASM_VER_NAME_PART}_aarch64.rpm"
   fi
 elif [[ "${DISTRO}" == "fedora40" ]]; then
   if [[ "$(arch)" =~ ^x86_64$ ]]; then
-    BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_fedora_forty_${KASM_VER_NAME_PART}_x86_64.rpm"
+    BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_fedora_forty_${KASM_VER_NAME_PART}_x86_64.rpm"
   else
-    BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_fedora_forty_${KASM_VER_NAME_PART}_aarch64.rpm"
+    BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_fedora_forty_${KASM_VER_NAME_PART}_aarch64.rpm"
   fi
 elif [[ "${DISTRO}" = @(debian|parrotos6) ]]; then
   if $(grep -q bookworm /etc/os-release) || $(grep -q lory /etc/os-release); then
     if [[ "$(arch)" =~ ^x86_64$ ]]; then
-      BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_bookworm_${KASM_VER_NAME_PART}_amd64.deb"
+      BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_bookworm_${KASM_VER_NAME_PART}_amd64.deb"
     else
-      BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_bookworm_${KASM_VER_NAME_PART}_arm64.deb"
+      BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_bookworm_${KASM_VER_NAME_PART}_arm64.deb"
     fi
   else
     if [[ "$(arch)" =~ ^x86_64$ ]]; then
-      BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_bullseye_${KASM_VER_NAME_PART}_amd64.deb"
+      BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_bullseye_${KASM_VER_NAME_PART}_amd64.deb"
     else
-      BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_bullseye_${KASM_VER_NAME_PART}_arm64.deb"
+      BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_bullseye_${KASM_VER_NAME_PART}_arm64.deb"
     fi
   fi
 elif [[ "${DISTRO}" == "alpine" ]]; then
   if grep -q v3.20 /etc/os-release; then
     if [[ "$(arch)" =~ ^x86_64$ ]]; then
-      BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/output/alpine_320/kasmvnc.alpine_320_x86_64.tgz"
+      BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/output/alpine_320/kasmvnc.alpine_320_x86_64.tgz"
     else
-      BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/output/alpine_320/kasmvnc.alpine_320_aarch64.tgz"
+      BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/output/alpine_320/kasmvnc.alpine_320_aarch64.tgz"
     fi
   elif grep -q v3.19 /etc/os-release; then
     if [[ "$(arch)" =~ ^x86_64$ ]]; then
-      BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/output/alpine_319/kasmvnc.alpine_319_x86_64.tgz"
+      BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/output/alpine_319/kasmvnc.alpine_319_x86_64.tgz"
     else
-      BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/output/alpine_319/kasmvnc.alpine_319_aarch64.tgz"
+      BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/output/alpine_319/kasmvnc.alpine_319_aarch64.tgz"
     fi
   elif grep -q v3.18 /etc/os-release; then
     if [[ "$(arch)" =~ ^x86_64$ ]]; then
-      BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/output/alpine_318/kasmvnc.alpine_318_x86_64.tgz"
+      BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/output/alpine_318/kasmvnc.alpine_318_x86_64.tgz"
     else
-      BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/output/alpine_318/kasmvnc.alpine_318_aarch64.tgz"
+      BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/output/alpine_318/kasmvnc.alpine_318_aarch64.tgz"
     fi
   else
     if [[ "$(arch)" =~ ^x86_64$ ]]; then
-      BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/output/alpine_317/kasmvnc.alpine_317_x86_64.tgz"
+      BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/output/alpine_317/kasmvnc.alpine_317_x86_64.tgz"
     else
-      BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/output/alpine_317/kasmvnc.alpine_317_aarch64.tgz"
+      BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/output/alpine_317/kasmvnc.alpine_317_aarch64.tgz"
     fi
   fi
 else
   UBUNTU_CODENAME=$(grep -Po -m 1 "(?<=_CODENAME=)\w+" /etc/os-release)
   if [[ "${BUILD_ARCH}" =~ ^aarch64$ ]]; then
-    BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_${UBUNTU_CODENAME}_${KASM_VER_NAME_PART}_arm64.deb"
+    BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_${UBUNTU_CODENAME}_${KASM_VER_NAME_PART}_arm64.deb"
   else
-    BUILD_URL="https://cache.ali.wodcloud.com/vscode/kasm/kasm_vnc/kasmvncserver_${UBUNTU_CODENAME}_${KASM_VER_NAME_PART}_amd64.deb"
+    BUILD_URL="https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_${UBUNTU_CODENAME}_${KASM_VER_NAME_PART}_amd64.deb"
   fi
 fi
 

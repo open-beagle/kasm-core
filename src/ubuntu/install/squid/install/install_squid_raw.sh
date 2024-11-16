@@ -16,12 +16,12 @@ fi
 
 # intall squid
 SQUID_COMMIT='1149fc830c7edcb383eec390cce2beba16befde5'
-if  $(grep -q Jammy /etc/os-release) || $(grep -q Kali /etc/os-release) || $(grep -q lory /etc/os-release); then
+if $(grep -q Jammy /etc/os-release) || $(grep -q Kali /etc/os-release) || $(grep -q lory /etc/os-release); then
   curl -fL https://kasmweb-build-artifacts.s3.amazonaws.com/kasm-squid-builder/${SQUID_COMMIT}/output/kasm-squid-builder_${ARCH}.tar.gz | tar -xzf - -C /
   wget ${LIBSSLURL} -O libssl1.1.${ARCH}.deb
   dpkg -i libssl1.1.${ARCH}.deb
   rm -f libssl1.1.${ARCH}.deb
-elif [[ "${DISTRO}" != @(centos|oracle7|oracle8|oracle9|opensuse|fedora37|fedora38|fedora39|fedora40|rockylinux9|rockylinux8|almalinux9|almalinux8|alpine) ]] ; then
+elif [[ "${DISTRO}" != @(centos|oracle7|oracle8|oracle9|opensuse|fedora37|fedora38|fedora39|fedora40|rockylinux9|rockylinux8|almalinux9|almalinux8|alpine) ]]; then
   curl -fL https://kasmweb-build-artifacts.s3.amazonaws.com/kasm-squid-builder/${SQUID_COMMIT}/output/kasm-squid-builder_${ARCH}.tar.gz | tar -xzf - -C /
 fi
 
@@ -79,7 +79,6 @@ cat >>/etc/squid/blocked.acl <<EOL
 EOL
 chown -R proxy:proxy /etc/squid/blocked.acl
 
-
 if [[ "${DISTRO}" == @(centos|oracle7) ]]; then
   yum install -y memcached cyrus-sasl iproute
 elif [[ "${DISTRO}" == @(oracle8|fedora37|fedora38|fedora39|fedora40|oracle9|rockylinux9|rockylinux8|almalinux9|almalinux8) ]]; then
@@ -93,7 +92,7 @@ else
 fi
 
 # Enable SASL in the memchache config
-echo "-S" >> /etc/memcached.conf
+echo "-S" >>/etc/memcached.conf
 
 mkdir -p /etc/sasl2
 cat >>/etc/sasl2/memcached.conf <<EOL
@@ -102,18 +101,16 @@ log_level: 5
 sasldb_path: /etc/sasl2/memcached-sasldb2
 EOL
 
-
 COMMIT_ID="f8a1049969e7bde2fa0814eb3e5e09f4359efca1"
 BRANCH="develop"
 COMMIT_ID_SHORT=$(echo "${COMMIT_ID}" | cut -c1-6)
 
-
 if [[ "${DISTRO}" == "alpine" ]]; then
-  curl -fL https://kasmweb-build-artifacts.s3.amazonaws.com/kasm_squid_adapter/${COMMIT_ID}/kasm_squid_adapter_alpine_${ARCH}_${BRANCH}.${COMMIT_ID_SHORT}.tar.gz | tar xz -C /etc/squid/
+  curl -fL https://cache.ali.wodcloud.com/vscode/kasm/squid/kasm_squid_adapter_alpine_${ARCH}_${BRANCH}.${COMMIT_ID_SHORT}.tar.gz | tar xz -C /etc/squid/
 else
-  curl -fL https://kasmweb-build-artifacts.s3.amazonaws.com/kasm_squid_adapter/${COMMIT_ID}/kasm_squid_adapter_glibc_${ARCH}_${BRANCH}.${COMMIT_ID_SHORT}.tar.gz | tar xz -C /etc/squid/
+  curl -fL https://cache.ali.wodcloud.com/vscode/kasm/squid/kasm_squid_adapter_glibc_${ARCH}_${BRANCH}.${COMMIT_ID_SHORT}.tar.gz | tar xz -C /etc/squid/
 fi
-echo "${BRANCH}:${COMMIT_ID}" > /etc/squid/kasm_squid_adapter.version
+echo "${BRANCH}:${COMMIT_ID}" >/etc/squid/kasm_squid_adapter.version
 ls -la /etc/squid
 chmod +x /etc/squid/kasm_squid_adapter
 
@@ -135,7 +132,6 @@ fi
 mkdir -p $HOME/.pki/nssdb/
 certutil -N -d sql:$HOME/.pki/nssdb/ --empty-password
 chown 1000:1000 $HOME/.pki/nssdb/
-
 
 cat >/usr/bin/filter_ready <<EOL
 #!/usr/bin/env bash

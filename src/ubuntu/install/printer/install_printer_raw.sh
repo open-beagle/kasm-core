@@ -30,7 +30,7 @@ COMMIT_ID_SHORT=$(echo "${COMMIT_ID}" | cut -c1-6)
 ARCH=$(arch | sed 's/aarch64/arm64/g' | sed 's/x86_64/amd64/g')
 
 mkdir -p $STARTUPDIR/printer
-curl -fL https://cache.ali.wodcloud.com/vscode/kasm/printer/kasm_printer_service_${ARCH}_${BRANCH}.${COMMIT_ID_SHORT}.tar.gz | tar -xvz -C $STARTUPDIR/printer/
+curl -fL https://kasmweb-build-artifacts.s3.amazonaws.com/kasm_printer_service/${COMMIT_ID}/kasm_printer_service_${ARCH}_${BRANCH}.${COMMIT_ID_SHORT}.tar.gz | tar -xvz -C $STARTUPDIR/printer/
 echo "${BRANCH}:${COMMIT_ID}" >$STARTUPDIR/printer/kasm_printer.version
 
 cat >/usr/bin/printer_ready <<EOL
