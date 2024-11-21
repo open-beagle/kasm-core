@@ -1,8 +1,10 @@
+#!/usr/bin/env bash
+
 BUILD_ARCH=$(uname -p)
 BUILD_VERSION="3.1"
 
 rm -rf $INST_SCRIPTS/virtualgl/*.deb
-if [ "$DISTRO" = @(ubuntu|debian) ]; then
+if [[ "$DISTRO" = @(ubuntu|debian) ]]; then
 
   if [[ "${BUILD_ARCH}" =~ ^aarch64$ ]]; then
     apt-get update && apt-get install -y --no-install-recommends \
