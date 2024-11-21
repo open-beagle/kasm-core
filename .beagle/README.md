@@ -13,7 +13,9 @@ git merge upstream/release/1.16.0
 ## build
 
 ```bash
+docker pull registry.cn-qingdao.aliyuncs.com/wod/debian:bookworm-slim-amd64 && \
 docker build \
+  --no-cache \
   --build-arg BASE=registry.cn-qingdao.aliyuncs.com/wod/debian:bookworm-slim-amd64 \
   --build-arg AUTHOR=mengkzhaoyun@gmail.com \
   --build-arg VERSION=1.16.0 \
@@ -47,17 +49,13 @@ docker build \
   . && \
 docker push registry.cn-qingdao.aliyuncs.com/wod/kasmweb:core-debian-bookworm-v1.16.0-arm64
 
+# debug
+docker pull registry.cn-qingdao.aliyuncs.com/wod/kasmweb:core-debian-bookworm-v1.16.0-amd64 && \
 docker run -it --rm \
   -v $PWD:/go/src/github.com/open-beagle/kasm-core \
   -w /go/src/github.com/open-beagle/kasm-core \
   --entrypoint=/bin/bash \
   registry.cn-qingdao.aliyuncs.com/wod/kasmweb:core-debian-bookworm-v1.16.0-amd64
-
-docker run -it --rm \
-  -v $PWD:/go/src/github.com/open-beagle/kasm-core \
-  -w /go/src/github.com/open-beagle/kasm-core \
-  --entrypoint=/bin/bash \
-  registry.cn-qingdao.aliyuncs.com/wod/debian:bookworm-slim-amd64
 ```
 
 ## cache
