@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-BUILD_ARCH=$(uname -p)
+BUILD_ARCH=$(arch | sed 's/aarch64/arm64/g' | sed 's/x86_64/amd64/g')
 BUILD_VERSION="3.1"
 
 rm -rf $INST_SCRIPTS/virtualgl/*.deb
 if [[ "$DISTRO" = @(ubuntu|debian) ]]; then
 
-  if [[ "${BUILD_ARCH}" =~ ^aarch64$ ]]; then
+  if [[ "${BUILD_ARCH}" = "arm64" ]]; then
     apt-get update && apt-get install -y --no-install-recommends \
       libxau6 libxdmcp6 libxcb1 libxext6 libx11-6
     apt-get update && apt-get install -y --no-install-recommends \
