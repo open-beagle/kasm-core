@@ -25,6 +25,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
   TZ=$TZ \
   STARTUPDIR=/dockerstartup
 
+COPY .beagle/core-ubuntu-jammy.list /etc/apt/sources.list
 ### Home setup
 WORKDIR $HOME
 RUN mkdir -p $HOME/Desktop && apt update && apt install curl -y
