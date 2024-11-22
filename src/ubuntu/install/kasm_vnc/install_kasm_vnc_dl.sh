@@ -25,4 +25,16 @@ curl -x $SOCKS5_PROXY_LOCAL \
   -o .tmp/kasm_vnc/kasmvncserver_bookworm_${KASM_VER_NAME_PART}_${ARCH}.deb \
   -fL https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_bookworm_${KASM_VER_NAME_PART}_${ARCH}.deb
 
+UBUNTU_CODENAME=jammy
+ARCH=amd64
+echo https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_${UBUNTU_CODENAME}_${KASM_VER_NAME_PART}_${ARCH}.deb
+curl -x $SOCKS5_PROXY_LOCAL \
+  -o .tmp/kasm_vnc/kasmvncserver_${UBUNTU_CODENAME}_${KASM_VER_NAME_PART}_${ARCH}.deb \
+  -fL https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_${UBUNTU_CODENAME}_${KASM_VER_NAME_PART}_${ARCH}.deb
+
+ARCH=arm64
+curl -x $SOCKS5_PROXY_LOCAL \
+  -o .tmp/kasm_vnc/kasmvncserver_${UBUNTU_CODENAME}_${KASM_VER_NAME_PART}_${ARCH}.deb \
+  -fL https://kasmweb-build-artifacts.s3.amazonaws.com/kasmvnc/${COMMIT_ID}/kasmvncserver_${UBUNTU_CODENAME}_${KASM_VER_NAME_PART}_${ARCH}.deb
+
 mc cp .tmp/kasm_vnc/*.deb aliyun/vscode/kasm/kasm_vnc/
