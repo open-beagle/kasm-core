@@ -1,5 +1,5 @@
 kind: pipeline
-name: docker
+name: 1.16-debian
 
 trigger:
   branch:
@@ -84,7 +84,7 @@ steps:
 
 ---
 kind: pipeline
-name: docker
+name: 1.16-ubuntu
 
 trigger:
   branch:
