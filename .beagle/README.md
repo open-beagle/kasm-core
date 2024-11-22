@@ -98,4 +98,21 @@ docker push registry.cn-qingdao.aliyuncs.com/wod/kasmweb:core-debian-bookworm-1.
 docker pull --platform=linux/arm64 kasmweb/core-debian-bookworm:1.16.0 && \
 docker tag kasmweb/core-debian-bookworm:1.16.0 registry.cn-qingdao.aliyuncs.com/wod/kasmweb:core-debian-bookworm-1.16.0-arm64 && \
 docker push registry.cn-qingdao.aliyuncs.com/wod/kasmweb:core-debian-bookworm-1.16.0-arm64
+
+# nvidia/cuda
+docker pull nvidia/cuda:12.6.2-runtime-ubuntu24.04 && \
+docker tag nvidia/cuda:12.6.2-runtime-ubuntu24.04 registry.cn-qingdao.aliyuncs.com/wod/cuda:12.6.2-runtime-ubuntu24.04 && \
+docker push registry.cn-qingdao.aliyuncs.com/wod/cuda:12.6.2-runtime-ubuntu24.04
+
+docker pull nvidia/cuda:12.6.2-runtime-ubuntu22.04 && \
+docker tag nvidia/cuda:12.6.2-runtime-ubuntu22.04 registry.cn-qingdao.aliyuncs.com/wod/cuda:12.6.2-runtime-ubuntu22.04 && \
+docker push registry.cn-qingdao.aliyuncs.com/wod/cuda:12.6.2-runtime-ubuntu22.04
+
+docker run -it --rm \
+  -v $PWD/:/go/src/github.com/open-beagle/kasm-core \
+  -w /go/src/github.com/open-beagle/kasm-core \
+  registry.cn-qingdao.aliyuncs.com/wod/cuda:12.6.2-runtime-ubuntu22.04 \
+  bash
+
+  cp .beagle/core-ubuntu-jammy.list /etc/apt/sources.list
 ```

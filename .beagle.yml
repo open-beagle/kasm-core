@@ -6,7 +6,7 @@ trigger:
     - 1.16-debian
 
 workspace:
-  path: /go/src/github.com/open-beagle/kasm-images
+  path: /go/src/github.com/open-beagle/kasm-core
 
 volumes:
   - name: docker
@@ -80,6 +80,62 @@ steps:
       username:
         from_secret: REGISTRY_USER_ALIYUN
       password:
+        from_secret: REGISTRY_PASSWORD_ALIYUN
+
+---
+kind: pipeline
+name: docker
+
+trigger:
+  branch:
+    - 1.16-ubuntu
+
+workspace:
+  path: /go/src/github.com/open-beagle/kasm-core
+
+volumes:
+  - name: docker
+    host:
+      path: /var/run/docker.sock
+
+clone:
+  disable: true
+
+steps:
+  - name: s3-cache
+    image: registry-vpc.cn-qingdao.aliyuncs.com/wod/devops-s3-cache:1.0
+    settings:
+      restore: true
+      mount:
+        - ./.git
+      endpoint: https://cache.ali.wodcloud.com
+      access_key:
+        from_secret: S3_ACCESS_KEY_ALIYUN
+      secret_key:
+        from_secret: S3_SECRET_KEY_ALIYUN
+
+  - name: fetch
+    image: registry-vpc.cn-qingdao.aliyuncs.com/wod/devops-git:1.0
+    settings:
+      proxy:
+        from_secret: SOCKS5_PROXY
+
+  - name: docker-jammy
+    image: registry-vpc.cn-qingdao.aliyuncs.com/wod/devops-docker:1.0
+    volumes:
+      - name: docker
+        path: /var/run/docker.sock
+    settings:
+      dockerfile: .beagle/core-ubuntu-jammy.dockerfile
+      base: registry-vpc.cn-qingdao.aliyuncs.com/wod/cuda:12.6.2-runtime-ubuntu22.04
+      repo: wod/kasmweb
+      version: core-ubuntu-jammy-v1.16.0
+      channel: amd64
+      args: "TARGETOS=linux,TARGETARCH=amd64,BG_IMG=bg_debian.svg,DISTRO=ubuntu,LANG=zh_CN.UTF-8,LANGUAGE=zh_CN:zh,LC_ALL=zh_CN.UTF-8,TZ=Asia/Shanghai"
+      registry: registry-vpc.cn-qingdao.aliyuncs.com
+      registry_user:
+        from_secret: REGISTRY_USER_ALIYUN
+      registry_password:
         from_secret: REGISTRY_PASSWORD_ALIYUN
 
 ---
