@@ -43,6 +43,7 @@ fi
 if [ "$DISTRO" = "ubuntu" ] && ! grep -q "24.04" /etc/os-release; then
   #update mesa to latest
   add-apt-repository ppa:kisak/turtle
+  sed -i 's/ppa.launchpadcontent.net/launchpad.proxy.ustclug.org/g' /etc/apt/sources.list /etc/apt/sources.list.d/*.list
   apt-get update
   apt full-upgrade -y
 elif [ "$DISTRO" = "ubuntu" ] && grep -q "24.04" /etc/os-release; then

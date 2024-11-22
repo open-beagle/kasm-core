@@ -56,6 +56,25 @@ docker run -it --rm \
   -w /go/src/github.com/open-beagle/kasm-core \
   --entrypoint=/bin/bash \
   registry.cn-qingdao.aliyuncs.com/wod/kasmweb:core-debian-bookworm-v1.16.0-amd64
+
+docker pull registry.cn-qingdao.aliyuncs.com/wod/cuda:12.6.2-runtime-ubuntu22.04 && \
+docker build \
+  --no-cache \
+  --build-arg BASE=registry.cn-qingdao.aliyuncs.com/wod/cuda:12.6.2-runtime-ubuntu22.04 \
+  --build-arg AUTHOR=mengkzhaoyun@gmail.com \
+  --build-arg VERSION=1.16.0 \
+  --build-arg TARGETOS=linux \
+  --build-arg TARGETARCH=amd64 \
+  --build-arg BG_IMG=bg_debian.svg \
+  --build-arg DISTRO=ubuntu \
+  --build-arg LANG=zh_CN.UTF-8 \
+  --build-arg LANGUAGE="zh_CN:zh" \
+  --build-arg LC_ALL=zh_CN.UTF-8 \
+  --build-arg TZ=Asia/Shanghai \
+  -t registry.cn-qingdao.aliyuncs.com/wod/kasmweb:core-ubuntu-jammy-v1.16.0 \
+  -f .beagle/core-ubuntu-jammy.dockerfile \
+  . && \
+docker push registry.cn-qingdao.aliyuncs.com/wod/kasmweb:core-ubuntu-jammy-v1.16.0
 ```
 
 ## cache
