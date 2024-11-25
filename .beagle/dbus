@@ -1,8 +1,6 @@
 #!/bin/sh
 
-if [ ! -d /var/run/dbus ]; then
-  mkdir -p /var/run/dbus
-fi
+mkdir -p /run/dbus
 
 if [ -f /var/run/dbus/pid ]; then
   rm -f /var/run/dbus/pid

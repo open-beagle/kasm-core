@@ -157,7 +157,7 @@ function start_kasmvnc() {
 
   mkdir /tmp/.X11-unix
   chmod 1777 /tmp/.X11-unix
-  
+
   rm -rf $HOME/.vnc/*.pid
   echo "exit 0" >$HOME/.vnc/xstartup
   chmod +x $HOME/.vnc/xstartup
