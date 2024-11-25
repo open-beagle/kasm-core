@@ -25,10 +25,12 @@ ENV DEBIAN_FRONTEND=noninteractive \
   TZ=$TZ \
   STARTUPDIR=/dockerstartup
 
+RUN apt update && apt install -y ca-certificates
+
 COPY .beagle/core-ubuntu-jammy.list /etc/apt/sources.list
 ### Home setup
 WORKDIR $HOME
-RUN mkdir -p $HOME/Desktop && apt update && apt install curl -y supervisor
+RUN mkdir -p $HOME/Desktop && apt update && apt install -y curl supervisor
 
 COPY .beagle/dbus /usr/bin/dbus
 COPY .beagle/supervisord.conf /etc/beagle/supervisord.conf
