@@ -6,7 +6,7 @@ PROFILE_SYNC_DIR=/kasm_profile_sync
 
 function copy_default_profile_to_home {
     echo "Copying default profile to home directory"
-    cp -rp $DEFAULT_PROFILE_HOME/.  $HOME/
+    cp -r $DEFAULT_PROFILE_HOME/*  $HOME/
     ls -la $HOME
 }
 
