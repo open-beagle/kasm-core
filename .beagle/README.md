@@ -127,6 +127,11 @@ docker pull nvidia/cuda:12.6.2-runtime-ubuntu22.04 && \
 docker tag nvidia/cuda:12.6.2-runtime-ubuntu22.04 registry.cn-qingdao.aliyuncs.com/wod/cuda:12.6.2-runtime-ubuntu22.04 && \
 docker push registry.cn-qingdao.aliyuncs.com/wod/cuda:12.6.2-runtime-ubuntu22.04
 
+# nvidia/opengl
+docker pull nvidia/opengl:1.2-glvnd-runtime-ubuntu22.04 && \
+docker tag nvidia/opengl:1.2-glvnd-runtime-ubuntu22.04 registry.cn-qingdao.aliyuncs.com/wod/nvidia:opengl1.2-glvnd-runtime-ubuntu22.04 && \
+docker push registry.cn-qingdao.aliyuncs.com/wod/nvidia:opengl1.2-glvnd-runtime-ubuntu22.04
+
 docker run -it --rm \
   -v $PWD/:/go/src/github.com/open-beagle/kasm-core \
   -w /go/src/github.com/open-beagle/kasm-core \

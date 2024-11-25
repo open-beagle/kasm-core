@@ -127,8 +127,8 @@ steps:
         path: /var/run/docker.sock
     settings:
       dockerfile: .beagle/core-ubuntu-jammy.dockerfile
-      base: registry-vpc.cn-qingdao.aliyuncs.com/wod/cuda:12.6.2-runtime-ubuntu22.04
-      repo: wod/kasmweb
+      base: registry-vpc.cn-qingdao.aliyuncs.com/wod/nvidia:opengl1.2-glvnd-runtime-ubuntu22.04
+      repo: wod/beagle-wind-vnc
       version: core-ubuntu-jammy-v1.16.0
       args: "TARGETOS=linux,TARGETARCH=amd64,BG_IMG=bg_debian.svg,DISTRO=ubuntu,LANG=zh_CN.UTF-8,LANGUAGE=zh_CN:zh,LC_ALL=zh_CN.UTF-8,TZ=Asia/Shanghai"
       registry: registry-vpc.cn-qingdao.aliyuncs.com
