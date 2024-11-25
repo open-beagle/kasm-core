@@ -135,8 +135,10 @@ docker push registry.cn-qingdao.aliyuncs.com/wod/nvidia:opengl1.2-glvnd-runtime-
 docker run -it --rm \
   -v $PWD/:/go/src/github.com/open-beagle/kasm-core \
   -w /go/src/github.com/open-beagle/kasm-core \
-  registry.cn-qingdao.aliyuncs.com/wod/cuda:12.6.2-runtime-ubuntu22.04 \
+  registry.cn-qingdao.aliyuncs.com/wod/nvidia:opengl1.2-glvnd-runtime-ubuntu22.04 \
   bash
 
+  apt update && apt install -y ca-certificates
   cp .beagle/core-ubuntu-jammy.list /etc/apt/sources.list
+  apt update && apt install -y curl supervisor
 ```
