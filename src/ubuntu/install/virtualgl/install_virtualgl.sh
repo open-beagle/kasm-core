@@ -50,6 +50,7 @@ if [[ "$DISTRO" = @(ubuntu|debian) ]]; then
 
     if ! grep -q "24.04" /etc/os-release; then
       add-apt-repository ppa:kisak/turtle
+      sed -i 's/ppa.launchpadcontent.net/launchpad.proxy.ustclug.org/g' /etc/apt/sources.list /etc/apt/sources.list.d/*.list
       apt full-upgrade -y
     fi
     curl -o $INST_SCRIPTS/virtualgl/virtualgl_${BUILD_VERSION}_amd64.deb -fL https://cache.ali.wodcloud.com/vscode/kasm/virtualgl/virtualgl_${BUILD_VERSION}_amd64.deb
