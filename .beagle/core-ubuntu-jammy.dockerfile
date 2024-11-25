@@ -28,7 +28,10 @@ ENV DEBIAN_FRONTEND=noninteractive \
 COPY .beagle/core-ubuntu-jammy.list /etc/apt/sources.list
 ### Home setup
 WORKDIR $HOME
-RUN mkdir -p $HOME/Desktop && apt update && apt install curl -y
+RUN mkdir -p $HOME/Desktop && apt update && apt install curl -y supervisor
+
+COPY .beagle/dbus /usr/bin/dbus
+COPY .beagle/supervisord.conf /etc/beagle/supervisord.conf
 
 ### Support NVIDIA gpus for graphics acceleration
 RUN echo "/usr/local/nvidia/lib" >> /etc/ld.so.conf.d/nvidia.conf && \

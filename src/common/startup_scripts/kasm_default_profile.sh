@@ -53,7 +53,13 @@ else
     copy_default_profile_to_home
 fi
 
+function start_supervisord {
+  sudo chmod +x /usr/bin/dbus
+  sudo /usr/bin/supervisord -c /etc/beagle/supervisord.conf &
+}
+
 verify_profile_config
+start_supervisord
 
 rm -rf $HOME/.config/pulse
 
