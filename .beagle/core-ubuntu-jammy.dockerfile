@@ -27,13 +27,14 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 RUN apt update && apt install -y ca-certificates
 
+COPY .beagle/dbus /usr/bin/dbus
+COPY .beagle/supervisord.conf /etc/beagle/supervisord/supervisord.conf
+RUN chmod +x /usr/bin/dbus
+
 COPY .beagle/core-ubuntu-jammy.list /etc/apt/sources.list
 ### Home setup
 WORKDIR $HOME
 RUN mkdir -p $HOME/Desktop && apt update && apt install -y curl supervisor apt-utils
-
-COPY .beagle/dbus /usr/bin/dbus
-COPY .beagle/supervisord.conf /etc/beagle/supervisord.conf
 
 ### Support NVIDIA gpus for graphics acceleration
 RUN echo "/usr/local/nvidia/lib" >> /etc/ld.so.conf.d/nvidia.conf && \

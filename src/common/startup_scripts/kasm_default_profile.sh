@@ -55,7 +55,7 @@ fi
 
 function start_supervisord {
   sudo chmod +x /usr/bin/dbus
-  sudo /usr/bin/supervisord -c /etc/beagle/supervisord.conf &
+  sudo /usr/bin/supervisord -c /etc/beagle/supervisord/supervisord.conf &
 }
 
 verify_profile_config
