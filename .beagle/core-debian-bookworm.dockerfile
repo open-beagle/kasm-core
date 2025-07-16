@@ -34,6 +34,10 @@ RUN echo "/usr/local/nvidia/lib" >> /etc/ld.so.conf.d/nvidia.conf && \
   echo "/usr/local/nvidia/lib64" >> /etc/ld.so.conf.d/nvidia.conf
 COPY src/ubuntu/install/nvidia/10_nvidia.json /usr/share/glvnd/egl_vendor.d/10_nvidia.json
 
+COPY .beagle/dbus /usr/bin/dbus
+COPY .beagle/supervisord.conf /etc/beagle/supervisord/supervisord.conf
+RUN chmod +x /usr/bin/dbus
+
 ### Setup package rules
 COPY ./src/ubuntu/install/package_rules $INST_SCRIPTS/package_rules/
 RUN bash $INST_SCRIPTS/package_rules/package_rules.sh && rm -rf $INST_SCRIPTS/package_rules/
